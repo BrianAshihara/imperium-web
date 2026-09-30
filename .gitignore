@@ -1,0 +1,19 @@
+node_modules/
+.next/
+out/
+build/
+
+.env
+.env*.local
+
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+.vercel
+.DS_Store
+*.pem
+npm-debug.log*
+
+# documentacao: so o README vai para o repositorio
+*.md
+!README.md

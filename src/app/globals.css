@@ -1,0 +1,220 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-hero: var(--hero);
+  --color-hero-foreground: var(--hero-foreground);
+  --color-hero-muted: var(--hero-muted);
+  --color-income: var(--income);
+  --color-expense: var(--expense);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-heading: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 1.75rem;
+
+  --shadow-card: 0 1px 2px oklch(0.2 0.01 90 / 0.04), 0 1px 3px oklch(0.2 0.01 90 / 0.03);
+  --shadow-raised: 0 2px 4px oklch(0.2 0.01 90 / 0.05), 0 8px 24px oklch(0.2 0.01 90 / 0.06);
+  --shadow-pill: 0 1px 2px oklch(0.2 0.01 90 / 0.08);
+}
+
+:root {
+  --background: oklch(0.961 0.008 91.5);
+  --foreground: oklch(0.195 0.012 99.5);
+
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  /* Ação primária é tinta, não cor de marca */
+  --primary: oklch(0.177 0.002 106.6);
+  --primary-foreground: oklch(0.98 0.004 92);
+
+  --secondary: oklch(0.937 0.012 91.5);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.937 0.012 91.5);
+  --muted-foreground: oklch(0.528 0.016 88.8);
+
+  --accent: oklch(0.902 0.165 114.8);
+  --accent-foreground: oklch(0.195 0.012 99.5);
+
+  --destructive: oklch(0.56 0.165 33.2);
+  --destructive-foreground: oklch(0.98 0.004 92);
+
+  --income: oklch(0.3 0.005 106.7);
+  --expense: oklch(0.696 0.145 36.5);
+  --success: oklch(0.848 0.173 116);
+  --warning: oklch(0.696 0.145 36.5);
+
+  --border: oklch(0.901 0.015 90.2);
+  --input: oklch(0.901 0.015 90.2);
+  --ring: oklch(0.177 0.002 106.6 / 0.35);
+
+  --surface: oklch(1 0 0);
+  --surface-strong: oklch(0.937 0.012 91.5);
+
+  /* Faixa principal do dashboard: superficie escura onde o lime vira destaque */
+  --hero: oklch(0.177 0.002 106.6);
+  --hero-foreground: oklch(0.97 0.004 92);
+  --hero-muted: oklch(0.72 0.008 95);
+
+  --chart-1: oklch(0.177 0.002 106.6);
+  --chart-2: oklch(0.696 0.145 36.5);
+  --chart-3: oklch(0.902 0.165 114.8);
+  --chart-4: oklch(0.624 0.011 87.5);
+  --chart-5: oklch(0.826 0.014 93);
+
+  --sidebar: oklch(0.961 0.008 91.5);
+  --sidebar-foreground: oklch(0.195 0.012 99.5);
+  --sidebar-accent: oklch(1 0 0);
+  --sidebar-accent-foreground: oklch(0.195 0.012 99.5);
+  --sidebar-border: oklch(0.901 0.015 90.2);
+
+  --radius: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Valores monetários nunca dançam ao atualizar */
+  th,
+  td,
+  input[type="number"],
+  input[type="date"] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+}
+
+@layer components {
+  .surface {
+    @apply rounded-2xl border border-border/70 bg-card shadow-[var(--shadow-card)];
+  }
+
+  .surface-quiet {
+    @apply rounded-2xl border border-border/70 bg-transparent;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-[0.1em] text-muted-foreground;
+  }
+
+  .numeric {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .display-value {
+    @apply font-semibold tracking-[-0.03em];
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium;
+  }
+
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .dotted-field {
+    background-image: radial-gradient(oklch(0.195 0.012 99.5 / 0.16) 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+
+  .dotted-field-inverse {
+    background-image: radial-gradient(oklch(1 0 0 / 0.1) 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+
+  .stagger > * {
+    animation: rise 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .stagger > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger > *:nth-child(2) { animation-delay: 50ms; }
+  .stagger > *:nth-child(3) { animation-delay: 100ms; }
+  .stagger > *:nth-child(4) { animation-delay: 150ms; }
+  .stagger > *:nth-child(5) { animation-delay: 200ms; }
+  .stagger > *:nth-child(6) { animation-delay: 250ms; }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger > * {
+    animation: none;
+  }
+}
